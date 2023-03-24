@@ -83,3 +83,38 @@ void remove_top(stack_t **stack, unsigned int l_num)
 	}
 
 }
+
+/**
+ * swap_top_2 - swaps thes top two elements of the stack
+ * @stack: points to head node of stack
+ * @l_num: line number of opcode
+ */
+void swap_top_2(stack_t **stack, unsigned int l_num)
+{
+	stack_t *tmp;
+	int n;
+
+	if (!stack)
+		exit(EXIT_FAILURE);
+	tmp = *stack;
+	if (tmp)
+	{
+		if (tmp->next)
+		{
+			tmp = tmp->next;
+			n = tmp->n;
+			tmp->n = (*stack)->n;
+			(*stack)->n = n;
+		}
+		else
+		{
+			fprintf(stderr, "L%d: can't swap, stack too short\n", l_num);
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", l_num);
+		exit(EXIT_FAILURE);
+	}
+}

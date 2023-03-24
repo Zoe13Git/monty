@@ -85,6 +85,7 @@ void find_func(char *opcode, char *value, int l_num, int format)
 		{"pall", print_stack},
 		{"pint", print_top},
 		{"pop", remove_top},
+		{"swap", swap_top_2},
 		{NULL, NULL}
 	};
 
@@ -126,7 +127,7 @@ void call_func(op_func func, char *op, char *val, int l_num, int format)
 		if (!val)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", l_num);
-			 exit(EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		}
 		else if (val[0] == '-')
 		{
