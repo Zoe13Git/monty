@@ -2,13 +2,13 @@
 /**
  * add_to_stack - Adds a node to the stack.
  * @new_node: Pointer to the new node.
- * @ln: Interger representing the line number of of the opcode.
+ * @l_num: Interger representing the line number of of the opcode.
  */
-void add_to_stack(stack_t **new_node, unsigned int line_number)
+void add_to_stack(stack_t **new_node, unsigned int l_num)
 {
 	stack_t *tmp;
-	
-	(void) line_number;
+
+	(void) l_num;
 	if (new_node == NULL || *new_node == NULL)
 		exit(EXIT_FAILURE);
 	if (head == NULL)
@@ -42,6 +42,11 @@ void print_stack(stack_t **stack, unsigned int line_number)
 	}
 }
 
+/**
+ * print_top - prints top element of stack
+ * @stack: pointer to head node of stack
+ * @l_num: line number of opcode
+ */
 void print_top(stack_t **stack, unsigned int l_num)
 {
 	(void) l_num;
@@ -52,6 +57,11 @@ void print_top(stack_t **stack, unsigned int l_num)
 		printf("%d\n", (*stack)->n);
 }
 
+/**
+ * remove_top - pop
+ * @stack: pointer to head node of stack
+ * @l_num: line number of opcode
+ */
 void remove_top(stack_t **stack, unsigned int l_num)
 {
 	stack_t *tmp;
