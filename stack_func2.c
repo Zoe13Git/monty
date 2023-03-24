@@ -8,6 +8,7 @@
 void add(stack_t **stack, unsigned int l_num)
 {
 	int sum;
+
 	if (!stack || !(*stack) || !(*stack)->next)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", l_num);
@@ -32,7 +33,7 @@ void sub(stack_t **stack, unsigned int l_num)
 		fprintf(stderr, "L%d: can't sub, stack too short\n", l_num);
 		exit(EXIT_FAILURE);
 	}
-	
+
 	*stack = (*stack)->next;
 	(*stack)->n -= (*stack)->prev->n;
 	free((*stack)->prev);
@@ -90,10 +91,10 @@ void mod(stack_t **stack, unsigned int l_num)
 {
 	if (!stack || !(*stack) || !(*stack)->next)
 	{
-		fprintf(stderr, "L%d: can't sub, stack too short\n", l_num);
+		fprintf(stderr, "L%d: can't mod, stack too short\n", l_num);
 		exit(EXIT_FAILURE);
 	}
-        if ((*stack)->n == 0)
+	if ((*stack)->n == 0)
 	{
 		fprintf(stderr, "L%d: division by zero\n", l_num);
 		exit(EXIT_FAILURE);
