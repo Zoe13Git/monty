@@ -28,5 +28,7 @@ void add(stack_t **stack, unsigned int l_num)
 void nop(stack_t **stack, unsigned int l_num)
 {
 	(void) stack;
-	(void) line_number;
+	(void) l_num;
 }
+
+
