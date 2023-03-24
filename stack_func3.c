@@ -39,11 +39,21 @@ void print_char(stack_t **stack, unsigned int l_num)
  */
 void print_string(stack_t **stack, unsigned int l_num)
 {
+	stack_t *tmp;
+
+	(void) l_num;
 	if (!stack || !(*stack))
+		printf("\n");
+	tmp = *stack;
+	while (tmp)
 	{
-		fprintf(stderr, "L%d: can't pchar, stack empty\n", l_num);
-		exit(EXIT_FAILURE);
+		if (tmp->n == 0 || tmp->n > 127)
+		{
+			printf("\n");
+			exit(EXIT_SUCCESS);
+		}
+		printf("%c", tmp->n);
+		tmp = tmp->next;
 	}
-
-
+	printf("\n");
 }
