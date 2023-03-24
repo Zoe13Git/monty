@@ -51,7 +51,7 @@ void call_func(op_func func, char *op, char *val, int ln, int format);
 stack_t *create_node(int n);
 void add_to_stack(stack_t **new_node, unsigned int);
 void print_stack(stack_t **stack, unsigned int);
-void free_nodes();
+void free_nodes(void);
 
 
 

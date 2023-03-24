@@ -42,8 +42,8 @@ void read_file(FILE *fd)
 /**
  * parse_line - Separates each line into tokens to determine
  * which function to call
- * @buffer: line from the file
- * @line_number: line number
+ * @buf: line from the file
+ * @l_num: line number
  * @format:  storage format. If 0 Nodes will be entered as a stack.
  * if 1 nodes will be entered as a queue.
  * Return: Returns 0 if the opcode is stack. 1 if queue.
@@ -57,7 +57,7 @@ int parse_line(char *buf, int l_num, int format)
 
 	if (!opcode)
 		return (format);
-	
+
 	value = strtok(NULL, delim);
 
 	find_func(opcode, value, l_num, format);
@@ -69,7 +69,7 @@ int parse_line(char *buf, int l_num, int format)
  * @opcode: opcode
  * @value: argument of opcode
  * @format:  storage format. If 0 Nodes will be entered as a stack.
- * @ln: line number
+ * @l_num: line number
  * if 1 nodes will be entered as a queue.
  * Return: void
  */
@@ -97,28 +97,28 @@ void find_func(char *opcode, char *value, int l_num, int format)
 }
 
 /**
- * call_fun - Calls the required function.
+ * call_func - Calls the required function.
  * @func: Pointer to the function that is about to be called.
  * @op: string representing the opcode.
  * @val: string representing a numeric value.
- * @ln: line numeber for the instruction.
+ * @l_num: line numeber for the instruction.
  * @format: Format specifier. If 0 Nodes will be entered as a stack.
  * if 1 nodes will be entered as a queue.
  */
-void call_func(op_func func, char *op, char *val, int ln, int format)
+void call_func(op_func func, char *op, char *val, int l_num, int format)
 {
 	stack_t *node;
 	int flag;
 	int i;
-	
+
 	flag = 1;
 	if (strcmp(op, "push") == 0)
 	{
 		if (!val)
 		{
-			fprintf(stderr, "L%d: usage: push integer\n", ln);
+			fprintf(stderr, "L%d: usage: push integer\n", l_num);
 			 exit(EXIT_FAILURE);
-		} 
+		}
 		else if (val[0] == '-')
 		{
 			val += 1;
@@ -129,7 +129,7 @@ void call_func(op_func func, char *op, char *val, int ln, int format)
 		{
 			if (isdigit(val[i]) == 0)
 			{
-				fprintf(stderr, "L%d: usage: push integer\n", ln);
+				fprintf(stderr, "L%d: usage: push integer\n", l_num);
 				exit(EXIT_FAILURE);
 			}
 		}
@@ -137,9 +137,9 @@ void call_func(op_func func, char *op, char *val, int ln, int format)
 		node = create_node(atoi(val) * flag);
 
 		if (format == 0)
-			func(&node, ln);
+			func(&node, l_num);
 
 	}
 	else
-		func(&head, ln);
+		func(&head, l_num);
 }

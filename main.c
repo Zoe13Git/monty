@@ -4,8 +4,8 @@ stack_t *head = NULL;
 
 /**
  * main - entry point
- * @argc - argument count
- * @argv - string
+ * @argc: argument count
+ * @argv: string
  * Return: 0;
  */
 int main(int argc, char *argv[])
@@ -43,8 +43,8 @@ stack_t *create_node(int n)
 }
 
 /**
- *  * free_nodes - Frees nodes in the stack.
- *   */
+ * free_nodes - Frees nodes in the stack.
+ */
 void free_nodes(void)
 {
 	stack_t *tmp;
