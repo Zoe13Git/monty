@@ -56,6 +56,10 @@ void remove_top(stack_t **stack, unsigned int);
 void swap_top_2(stack_t **stack, unsigned int);
 
 void add(stack_t **stack, unsigned int);
+void sub(stack_t **stack, unsigned int);
+void divide(stack_t **stack, unsigned int);
+void mul(stack_t **stack, unsigned int);
+void mod(stack_t **stack, unsigned int);
 void nop(stack_t **stack, unsigned int);
 
 

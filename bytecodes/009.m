@@ -1,4 +1,3 @@
-#push 1100
 push 1 #this will 
 
 push 2

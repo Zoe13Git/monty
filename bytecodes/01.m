@@ -1,2 +1,2 @@
-      
-pall
+push 1
+pnit

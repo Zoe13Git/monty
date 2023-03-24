@@ -21,6 +21,91 @@ void add(stack_t **stack, unsigned int l_num)
 }
 
 /**
+ * sub - subtracts top element from second top element
+ * @stack: points to head node of stack
+ * @l_num: line number of opcode
+ */
+void sub(stack_t **stack, unsigned int l_num)
+{
+	if (!stack || !(*stack) || !(*stack)->next)
+	{
+		fprintf(stderr, "L%d: can't sub, stack too short\n", l_num);
+		exit(EXIT_FAILURE);
+	}
+	
+	*stack = (*stack)->next;
+	(*stack)->n -= (*stack)->prev->n;
+	free((*stack)->prev);
+	(*stack)->prev = NULL;
+}
+
+/**
+ * div - divides seond top element by stop element
+ * @stack: points to head node of stack
+ * @l_num: line number of opcode
+ */
+void divide(stack_t **stack, unsigned int l_num)
+{
+	if (!stack || !(*stack) || !(*stack)->next)
+	{
+		fprintf(stderr, "L%d: can't div, stack too short\n", l_num);
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", l_num);
+		exit(EXIT_FAILURE);
+	}
+	*stack = (*stack)->next;
+	(*stack)->n /= (*stack)->prev->n;
+	free((*stack)->prev);
+	(*stack)->prev = NULL;
+}
+
+/**
+ * mul - subtracts top element from second top element
+ * @stack: points to head node of stack
+ * @l_num: line number of opcode
+ */
+void mul(stack_t **stack, unsigned int l_num)
+{
+	if (!stack || !(*stack) || !(*stack)->next)
+	{
+		fprintf(stderr, "L%d: can't mul, stack too short\n", l_num);
+		exit(EXIT_FAILURE);
+	}
+
+	*stack = (*stack)->next;
+	(*stack)->n *= (*stack)->prev->n;
+	free((*stack)->prev);
+	(*stack)->prev = NULL;
+}
+
+/**
+ * mod - computes rest of div of second top by top element
+ * @stack: points to head node of stack
+ * @l_num: line number of opcode
+ */
+void mod(stack_t **stack, unsigned int l_num)
+{
+	if (!stack || !(*stack) || !(*stack)->next)
+	{
+		fprintf(stderr, "L%d: can't sub, stack too short\n", l_num);
+		exit(EXIT_FAILURE);
+	}
+        if ((*stack)->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", l_num);
+		exit(EXIT_FAILURE);
+	}
+	*stack = (*stack)->next;
+	(*stack)->n %= (*stack)->prev->n;
+	free((*stack)->prev);
+	(*stack)->prev = NULL;
+}
+
+
+/**
  * nop - does nothing
  * @stack: points to head node of stack
  * @l_num: line number of opcode
@@ -30,5 +115,3 @@ void nop(stack_t **stack, unsigned int l_num)
 	(void) stack;
 	(void) l_num;
 }
-
-

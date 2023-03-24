@@ -118,3 +118,4 @@ void swap_top_2(stack_t **stack, unsigned int l_num)
 		exit(EXIT_FAILURE);
 	}
 }
+

@@ -87,6 +87,10 @@ void find_func(char *opcode, char *value, int l_num, int format)
 		{"pop", remove_top},
 		{"swap", swap_top_2},
 		{"add", add},
+		{"sub", sub},
+		{"div", divide},
+		{"mul", mul},
+		{"mod", mod},
 		{"nop", nop},
 		{NULL, NULL}
 	};
