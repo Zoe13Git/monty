@@ -19,3 +19,14 @@ void add(stack_t **stack, unsigned int l_num)
 	free((*stack)->prev);
 	(*stack)->prev = NULL;
 }
+
+/**
+ * nop - does nothing
+ * @stack: points to head node of stack
+ * @l_num: line number of opcode
+ */
+void nop(stack_t **stack, unsigned int l_num)
+{
+	(void) stack;
+	(void) line_number;
+}
