@@ -10,8 +10,10 @@ void open_file(char *file)
 	FILE *fd = fopen(file, "r");
 
 	if (!file || !fd)
+	{
 		fprintf(stderr, "Error: Can't open file %s\n", file);
-
+		exit(EXIT_FAILURE);
+	}
 	read_file(fd);
 	fclose(fd);
 }
