@@ -62,7 +62,8 @@ void mul(stack_t **stack, unsigned int);
 void mod(stack_t **stack, unsigned int);
 void nop(stack_t **stack, unsigned int);
 
-
+void print_char(stack_t **stack, unsigned int);
+void print_string(stack_t **stack, unsigned int);
 
 void free_nodes(void);
 

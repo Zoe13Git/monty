@@ -41,7 +41,7 @@ void sub(stack_t **stack, unsigned int l_num)
 }
 
 /**
- * div - divides seond top element by stop element
+ * divide - divides seond top element by stop element
  * @stack: points to head node of stack
  * @l_num: line number of opcode
  */
@@ -105,14 +105,3 @@ void mod(stack_t **stack, unsigned int l_num)
 	(*stack)->prev = NULL;
 }
 
-
-/**
- * nop - does nothing
- * @stack: points to head node of stack
- * @l_num: line number of opcode
- */
-void nop(stack_t **stack, unsigned int l_num)
-{
-	(void) stack;
-	(void) l_num;
-}
