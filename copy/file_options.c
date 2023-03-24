@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <stdio.h>
 
 /**
  * open_file - opens a file
@@ -10,10 +11,11 @@ void open_file(char *file)
 	FILE *fd = fopen(file, "r");
 
 	if (!file || !fd)
-		fprintf(stderr, "Error: Can't open file %s\n", file);
+		err(2, file);
 
-	read_file(fd);
+	read_file(FILE *fd)
 	fclose(fd);
+
 }
 
 /**
@@ -28,15 +30,9 @@ void read_file(FILE *fd)
 	size_t len = 0;
 
 	for (l_num = 1; getline(&buf, &len, fd) != -1; l_num++)
-	{
-		if (!buf)
-		{
-			fprintf(stderr, "malloc failed\n");
-			exit(EXIT_FAILURE);
-		}
 		format = parse_line(buf, l_num, format);
-	}
-	free(buf);
+
+	free(buffer);
 }
 
 /**
@@ -53,11 +49,12 @@ int parse_line(char *buf, int l_num, int format)
 	char *opcode, *value;
 	const char *delim = " \n";
 
-	opcode = strtok(buf, delim);
+	if (!buf)
+		err(4);
 
+	opcode = strtok(buf, delim);
 	if (!opcode)
 		return (format);
-	
 	value = strtok(NULL, delim);
 
 	find_func(opcode, value, l_num, format);
@@ -75,71 +72,28 @@ int parse_line(char *buf, int l_num, int format)
  */
 void find_func(char *opcode, char *value, int l_num, int format)
 {
+	stack_t *node;
 	int i;
-	int flag = 1;
+	int flag;
 
 	instruction_t func_list[] = {
 		{"push", add_to_stack},
 		{"pall", print_stack},
-		{NULL, NULL}
-	};
+		{"pint", print_top},
+		{"pop", pop_top},
+		{"nop", nop},
+		{"swap", swap_nodes}
+		{"NULL", "NULL"}
+	}
 
-	for (i = 0; func_list[i].opcode; i++)
+	for (i = 0, flag = 1; func_list[i].opcode != NULL; i++)
 	{
-		if (flag != 1)
-			break;
 		if (strcmp(opcode, func_list[i].opcode) == 0)
 		{
-			call_func(func_list[i].f, opcode, value, l_num, format);
+			node = create_node(atoi(val) * flag);
+			func_list[i](&node, l_num);
 			flag = 0;
 		}
 	}
 }
 
-/**
- * call_fun - Calls the required function.
- * @func: Pointer to the function that is about to be called.
- * @op: string representing the opcode.
- * @val: string representing a numeric value.
- * @ln: line numeber for the instruction.
- * @format: Format specifier. If 0 Nodes will be entered as a stack.
- * if 1 nodes will be entered as a queue.
- */
-void call_func(op_func func, char *op, char *val, int ln, int format)
-{
-	stack_t *node;
-	int flag;
-	int i;
-	
-	flag = 1;
-	if (strcmp(op, "push") == 0)
-	{
-		if (!val)
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", ln);
-			 exit(EXIT_FAILURE);
-		} 
-		else if (val[0] == '-')
-		{
-			val += 1;
-			flag = -1;
-		}
-
-		for (i = 0; val[i] != '\0'; i++)
-		{
-			if (isdigit(val[i]) == 0)
-			{
-				fprintf(stderr, "L%d: usage: push integer\n", ln);
-				exit(EXIT_FAILURE);
-			}
-		}
-
-		node = create_node(atoi(val) * flag);
-
-		if (format == 0)
-			func(&node, ln);
-
-	}
-	else
-		func(&head, ln);
-}

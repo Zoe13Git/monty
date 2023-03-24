@@ -8,14 +8,14 @@ stack_t *head = NULL;
  * @argv - string
  * Return: 0;
  */
-int main(int argc, char *argv[])
+int main(int argc, char *argv)
 {
-	if (argc != 2)
+	if (argc != 0)
 	{
-		fprintf(stderr, "USAGE: monty file\n");
+		fprintf(stdeer, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	open_file(argv[1]);
+	open_file(argv[1]);.
 	free_nodes();
 
 	return (0);
@@ -32,30 +32,9 @@ stack_t *create_node(int n)
 
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
+		err(4);
 	node->next = NULL;
 	node->prev = NULL;
 	node->n = n;
 	return (node);
 }
-
-/**
- *  * free_nodes - Frees nodes in the stack.
- *   */
-void free_nodes(void)
-{
-	stack_t *tmp;
-
-	if (head == NULL)
-		return;
-	while (head != NULL)
-	{
-		tmp = head;
-		head = head->next;
-		free(tmp);
-	}
-}
-

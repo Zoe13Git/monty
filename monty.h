@@ -1,7 +1,11 @@
 #ifndef MONTY_H
 #define MONTY_H
-
+#define  _GNU_SOURCE
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <unistd.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -19,7 +23,6 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
-
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -34,19 +37,21 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+extern stack_t *head;
+typedef void (*op_func)(stack_t **, unsigned int);
+
 void open_file(char *file);
 void read_file(FILE *);
 
-int parse_line(char *buf, int l_num, int format)
+int parse_line(char *buf, int l_num, int format);
 void find_func(char *opcode, char *value, int l_num, int format);
+void call_func(op_func func, char *op, char *val, int ln, int format);
 
 
-
-
-
-void add_to_stack(stack_t **new_node);
-void print_stack(stack_t **stack)
-
+stack_t *create_node(int n);
+void add_to_stack(stack_t **new_node, unsigned int);
+void print_stack(stack_t **stack, unsigned int);
+void free_nodes();
 
 
 
