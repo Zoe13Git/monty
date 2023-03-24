@@ -96,6 +96,11 @@ void find_func(char *opcode, char *value, int l_num, int format)
 			flag = 0;
 		}
 	}
+	if (flag == 1)
+	{
+		fprintf(stderr, "L%d: unknown instruction %s\n", l_num, opcode);
+		exit(EXIT_FAILURE);
+	}
 }
 
 /**
