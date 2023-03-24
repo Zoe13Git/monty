@@ -43,7 +43,10 @@ void print_string(stack_t **stack, unsigned int l_num)
 
 	(void) l_num;
 	if (!stack || !(*stack))
+	{
 		printf("\n");
+		exit(EXIT_SUCCESS);
+	}
 	tmp = *stack;
 	while (tmp)
 	{
