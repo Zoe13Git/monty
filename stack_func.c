@@ -41,3 +41,13 @@ void print_stack(stack_t **stack, unsigned int line_number)
 		tmp = tmp->next;
 	}
 }
+
+void print_top(stack_t **stack, unsigned int l_num)
+{
+	(void) l_num;
+
+	if (!stack)
+		exit(EXIT_FAILURE);
+	if (*stack)
+		printf("%d\n", (*stack)->n);
+}
