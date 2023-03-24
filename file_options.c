@@ -86,6 +86,7 @@ void find_func(char *opcode, char *value, int l_num, int format)
 		{"pint", print_top},
 		{"pop", remove_top},
 		{"swap", swap_top_2},
+		{"add", add},
 		{NULL, NULL}
 	};
 

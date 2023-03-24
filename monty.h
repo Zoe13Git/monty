@@ -55,6 +55,7 @@ void print_top(stack_t **stack, unsigned int);
 void remove_top(stack_t **stack, unsigned int);
 void swap_top_2(stack_t **stack, unsigned int);
 
+void add(stack_t **stack, unsigned int);
 
 void free_nodes(void);
 
