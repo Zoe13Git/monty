@@ -51,3 +51,25 @@ void print_top(stack_t **stack, unsigned int l_num)
 	if (*stack)
 		printf("%d\n", (*stack)->n);
 }
+
+void remove_top(stack_t **stack, unsigned int l_num)
+{
+	stack_t *tmp;
+
+	(void) l_num;
+	if (!stack)
+		exit(EXIT_FAILURE);
+	tmp = *stack;
+	if (tmp)
+	{
+		if (!tmp->next)
+			*stack = NULL;
+		else
+		{
+			*stack = tmp->next;
+			(*stack)->prev = NULL;
+		}
+		free(tmp);
+	}
+
+}
